@@ -1,6 +1,6 @@
 // const KEY = "ef354aa428074050b7e83836253112";
-// import { useEffect, useState } from "react";
-// import "./index.css";
+import { useEffect, useState } from "react";
+import "./index.css";
 
 const KEY = import.meta.env.VITE_WEATHER_API_KEY;
 
