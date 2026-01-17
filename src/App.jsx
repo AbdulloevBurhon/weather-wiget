@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "./index.css";
 
-const KEY = "9ed25195e11d4859947102643242211";
+const KEY = "ef354aa428074050b7e83836253112";
 
 function App() {
   // State to store the city name entered by the user
@@ -34,7 +34,7 @@ function App() {
       (err) => {
         console.error("Geolocation error", err.message); // Log the geolocation error
         setError("Failed to get your location");
-      }
+      },
     );
   }, []); // Dependency array is empty, so this runs only once when the component mounts
 
@@ -52,12 +52,17 @@ function App() {
     async function getData() {
       setLoading(true); // Set loading state to true before making the API request
       try {
-        const query = city.trim() ? city : `${coords.latitude},${coords.longitude}`;
+        const query = city.trim()
+          ? city
+          : `${coords.latitude},${coords.longitude}`;
 
         // Fetch weather data from the API
-        const res = await fetch(`http://api.weatherapi.com/v1/current.json?key=${KEY}&q=${query}`, {
-          signal, // Pass the AbortController signal
-        });
+        const res = await fetch(
+          `http://api.weatherapi.com/v1/current.json?key=${KEY}&q=${query}`,
+          {
+            signal, // Pass the AbortController signal
+          },
+        );
         const data = await res.json();
 
         // Handle API errors
@@ -127,7 +132,10 @@ function App() {
           alt="icon"
           className="weather-icon"
         />
-        <p className="temperature"> {Math.round(weatherData?.current?.temp_c)}°C</p>
+        <p className="temperature">
+          {" "}
+          {Math.round(weatherData?.current?.temp_c)}°C
+        </p>
         <p className="condition"> {weatherData?.current?.condition?.text}</p>
         <div className="weather-details">
           <p>Humidity: {weatherData?.current?.humidity}%</p>
